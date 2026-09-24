@@ -1,0 +1,20 @@
+:root { color-scheme: light dark; }
+body { width: 360px; margin: 0; padding: 10px 12px; font: 13px system-ui, sans-serif; }
+header, .head { display: flex; justify-content: space-between; align-items: center; }
+header { margin-bottom: 8px; font-size: 14px; }
+.label { font-size: 11px; text-transform: uppercase; opacity: .7; }
+.title { margin: 2px 0 6px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+button { cursor: pointer; padding: 5px 10px; }
+button.primary { width: 100%; font-weight: 600; padding: 7px; }
+button.icon { padding: 2px 8px; }
+button:disabled { opacity: .5; cursor: default; }
+.formats { display: flex; gap: 12px; margin: 10px 0; flex-wrap: wrap; }
+#curBox { padding-bottom: 6px; border-bottom: 1px solid #8884; }
+ul { list-style: none; margin: 4px 0 8px; padding: 0; }
+li { display: flex; gap: 6px; align-items: center; padding: 4px 2px; border-bottom: 1px solid #8882; cursor: pointer; }
+li .t { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+li .d { font-size: 11px; opacity: .65; white-space: nowrap; }
+#expSel { width: 100%; }
+#status { margin: 8px 0 0; font-size: 12px; white-space: pre-wrap; }
+footer { margin-top: 10px; padding-top: 8px; border-top: 1px solid #8884; }
+footer button { width: 100%; }

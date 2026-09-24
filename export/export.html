@@ -1,0 +1,149 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Claude Exporter</title>
+<link rel="stylesheet" href="export.css"></head>
+<body>
+<h1>Claude Exporter</h1>
+
+<fieldset id="settings">
+  <legend data-i18n="settings">Settings</legend>
+  <label><span data-i18n="language">Language</span>:
+    <select id="lang"><option value="en">English</option><option value="ru">Русский</option></select>
+  </label>
+</fieldset>
+
+<fieldset id="diag">
+  <legend data-i18n="diag"></legend>
+  <p data-i18n="diag_hint"></p>
+  <p data-i18n="diag_rec_hint"></p>
+  <button id="diagRun" data-i18n="diag_run"></button>
+  <button id="diagRecStart" data-i18n="diag_rec_start"></button>
+  <button id="diagRecStop" hidden data-i18n="diag_rec_stop"></button>
+  <button id="diagCopy" hidden data-i18n="diag_copy"></button>
+  <div id="diagStatus"></div>
+  <pre id="diagOut"></pre>
+</fieldset>
+
+<div id="grant" hidden>
+  <p data-i18n="grant_text">Access to claude.ai is required.</p>
+  <button id="grantBtn" data-i18n="grant_btn">Allow access to claude.ai</button>
+</div>
+
+<nav id="tabs">
+  <button data-tab="chats" class="active" data-i18n="tab_chats"></button>
+  <button data-tab="artifacts" data-i18n="tab_artifacts"></button>
+  <button data-tab="projects" data-i18n="tab_projects"></button>
+  <button data-tab="account" data-i18n="tab_account"></button>
+  <button data-tab="local" data-i18n="tab_local"></button>
+</nav>
+
+<p id="loadRow"><button id="loadBtn" data-i18n="load_btn">Load chat list</button> <span id="status"></span></p>
+
+<section id="main" hidden>
+  <fieldset>
+    <legend data-i18n="what">What to export</legend>
+    <label><input type="radio" name="mode" value="all" checked> <span data-i18n="mode_all"></span></label>
+    <label><input type="radio" name="mode" value="period"> <span data-i18n="mode_period"></span></label>
+    <label><input type="radio" name="mode" value="selected"> <span data-i18n="mode_selected"></span></label>
+    <div id="periodRow">
+      <label><span data-i18n="from"></span> <input type="date" id="from"></label>
+      <label><span data-i18n="to"></span> <input type="date" id="to"></label>
+      <label><span data-i18n="by"></span> <select id="dateField"><option value="updated_at" data-i18n="by_updated"></option><option value="created_at" data-i18n="by_created"></option></select></label>
+    </div>
+    <div>
+      <input id="query" type="search" data-i18n-placeholder="search_ph">
+      <select id="project"><option value="" data-i18n="all_projects"></option></select>
+    </div>
+  </fieldset>
+
+  <div class="tools">
+    <button id="selVisible" data-i18n="sel_visible"></button>
+    <button id="selNone" data-i18n="sel_none"></button>
+    <strong id="count"></strong>
+  </div>
+  <div class="tablewrap">
+    <table id="tbl"><thead><tr><th></th><th data-i18n="th_title"></th><th data-i18n="th_project"></th><th data-i18n="th_created"></th><th data-i18n="th_modified"></th><th data-i18n="th_model"></th></tr></thead><tbody></tbody></table>
+  </div>
+</section>
+
+<fieldset id="chatOpts" hidden>
+  <legend data-i18n="format_opts"></legend>
+  <label><input type="checkbox" id="oMd" checked> <span data-i18n="o_md"></span></label>
+  <label><input type="checkbox" id="oPdf"> <span data-i18n="o_pdf"></span></label>
+  <label><input type="checkbox" id="oArtifacts" checked> <span data-i18n="o_artifacts"></span></label>
+  <label><input type="checkbox" id="oInline" checked> <span data-i18n="o_inline"></span></label>
+  <label><input type="checkbox" id="oThinking"> <span data-i18n="o_thinking"></span></label>
+  <label><input type="checkbox" id="oTools"> <span data-i18n="o_tools"></span></label>
+  <label><input type="checkbox" id="oFront" checked> <span data-i18n="o_front"></span></label>
+</fieldset>
+
+<fieldset id="artOpts" hidden>
+  <legend data-i18n="art_opts"></legend>
+  <label><input type="checkbox" id="oAllVersions"> <span data-i18n="o_all_versions"></span></label>
+  <label><input type="checkbox" id="oBinaries"> <span data-i18n="o_binaries"></span></label>
+</fieldset>
+
+<fieldset id="galleryBox" hidden>
+  <legend data-i18n="gallery"></legend>
+  <p data-i18n="gallery_hint"></p>
+  <button id="galleryBtn" data-i18n="gallery_btn"></button> <span id="galleryStatus"></span>
+</fieldset>
+
+<section id="localSec" hidden>
+  <fieldset>
+    <legend data-i18n="cc_title"></legend>
+    <p data-i18n="cc_hint"></p>
+    <input type="file" id="ccPick" webkitdirectory multiple>
+    <div id="ccInfo"></div>
+  </fieldset>
+  <fieldset>
+    <legend data-i18n="off_title"></legend>
+    <p data-i18n="off_hint"></p>
+    <input type="file" id="offPick" accept=".zip,.json">
+    <div id="offInfo"></div>
+  </fieldset>
+  <fieldset>
+    <legend data-i18n="lc_extras"></legend>
+    <label><input type="checkbox" id="oLcMemory" checked> <span data-i18n="o_lc_memory"></span></label>
+    <label><input type="checkbox" id="oLcSkills" checked> <span data-i18n="o_lc_skills"></span></label>
+    <label><input type="checkbox" id="oLcMd" checked> <span data-i18n="o_lc_md"></span></label>
+    <label><input type="checkbox" id="oLcProj" checked> <span data-i18n="o_lc_proj"></span></label>
+  </fieldset>
+</section>
+
+<section id="accSec" hidden>
+  <p data-i18n="acc_note"></p>
+  <label><input type="checkbox" id="oSkills" checked> <span data-i18n="o_skills"></span></label>
+  <label><input type="checkbox" id="oMemory" checked> <span data-i18n="o_memory"></span></label>
+</section>
+
+<section id="projSec" hidden>
+  <p><label><input type="checkbox" id="oProjFiles" checked> <span data-i18n="o_proj_files"></span></label></p>
+  <p><button id="loadProjBtn" data-i18n="projects_load"></button> <span id="projStatus"></span></p>
+  <div id="projTools" class="tools" hidden>
+    <button id="projAll" data-i18n="proj_all"></button>
+    <button id="projNone" data-i18n="proj_clear"></button>
+    <strong id="projCount"></strong>
+  </div>
+  <ul id="projList"></ul>
+</section>
+
+<div id="actions" hidden>
+  <fieldset>
+    <legend data-i18n="pack_opts"></legend>
+    <span data-i18n="packaging"></span>
+    <label><input type="radio" name="pack" value="zip" checked> <span data-i18n="pack_zip"></span></label>
+    <label><input type="radio" name="pack" value="files"> <span data-i18n="pack_files"></span></label>
+    &nbsp; <span data-i18n="folder"></span> <input id="folder" value="ClaudeExport">
+    <label><input type="checkbox" id="oAsk"> <span data-i18n="ask_where"></span></label>
+  </fieldset>
+  <p>
+    <button id="exportBtn" class="primary"></button>
+    <button id="cancelBtn" hidden data-i18n="cancel_btn"></button>
+    <progress id="prog" value="0" max="1" hidden></progress>
+    <span id="progText"></span>
+  </p>
+  <pre id="out"></pre>
+</div>
+
+<script type="module" src="export.js"></script>
+</body></html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Claude Exporter</title>
+<link rel="stylesheet" href="popup.css"></head>
+<body>
+<header>
+  <strong>Claude Exporter</strong>
+  <button id="gear" class="icon" data-i18n-title="pu_settings">⚙</button>
+</header>
+
+<div id="noaccess" hidden>
+  <p data-i18n="grant_text"></p>
+  <button id="grantBtn" class="primary" data-i18n="grant_btn"></button>
+</div>
+
+<div id="noclaude" hidden>
+  <p data-i18n="pu_open_claude_hint"></p>
+  <button id="openClaude" class="primary" data-i18n="pu_open_claude"></button>
+</div>
+
+<section id="content" hidden>
+  <div id="curBox" hidden>
+    <div class="label" data-i18n="pu_current"></div>
+    <div id="curTitle" class="title"></div>
+    <button id="expCur" class="primary" data-i18n="pu_export_this"></button>
+  </div>
+
+  <div class="formats">
+    <label><input type="checkbox" id="oMd" checked> <span data-i18n="o_md"></span></label>
+    <label><input type="checkbox" id="oPdf"> <span data-i18n="o_pdf"></span></label>
+    <label><input type="checkbox" id="oArtifacts" checked> <span data-i18n="pu_art_files"></span></label>
+  </div>
+
+  <div class="head">
+    <span class="label" data-i18n="pu_recent"></span>
+    <button id="refresh" class="icon" data-i18n-title="pu_refresh">↻</button>
+  </div>
+  <ul id="recent"></ul>
+  <button id="expSel" disabled></button>
+</section>
+
+<div id="status"></div>
+<footer><button id="full" data-i18n="pu_full"></button></footer>
+<script type="module" src="popup.js"></script>
+</body></html>

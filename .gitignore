@@ -1,0 +1,21 @@
+# Dependencies / build output
+node_modules/
+.ff-dev-profile/
+web-ext-artifacts/
+*.xpi
+
+# Exported data must never be committed
+ClaudeExport/
+diagnostics-*.json
+claude-export-*.zip
+docs/local-checks.log
+docs/verify-local.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Personal git/push tooling - not part of the project, never shared.
+/exclude/

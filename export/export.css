@@ -1,0 +1,21 @@
+:root { color-scheme: light dark; }
+body { font: 14px system-ui, sans-serif; max-width: 1000px; margin: 24px auto; padding: 0 16px; }
+fieldset { margin: 12px 0; }
+fieldset label { margin-right: 12px; display: inline-block; }
+fieldset div { margin-top: 6px; }
+.tools { margin: 8px 0; display: flex; gap: 8px; align-items: center; }
+.tablewrap { max-height: 380px; overflow: auto; border: 1px solid #8884; }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: left; padding: 3px 8px; border-bottom: 1px solid #8882; white-space: nowrap; }
+td.title { white-space: normal; }
+th { position: sticky; top: 0; background: Canvas; }
+tr.hidden { display: none; }
+button.primary { font-weight: bold; padding: 6px 16px; }
+pre { white-space: pre-wrap; }
+#tabs { display: flex; gap: 4px; margin: 12px 0; border-bottom: 1px solid #8884; }
+#tabs button { padding: 6px 16px; border: 1px solid transparent; border-bottom: none; background: none; cursor: pointer; color: inherit; font: inherit; }
+#tabs button.active { border-color: #8884; font-weight: 600; background: #8882; }
+#projList { list-style: none; margin: 4px 0; padding: 0; max-height: 380px; overflow: auto; border: 1px solid #8884; }
+#projList li { padding: 4px 8px; border-bottom: 1px solid #8882; }
+#projList label { display: block; cursor: pointer; }
+[hidden] { display: none !important; }

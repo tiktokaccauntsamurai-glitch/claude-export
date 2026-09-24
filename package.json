@@ -1,0 +1,20 @@
+{
+  "name": "claude-exporter-ff",
+  "version": "0.8.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "web-ext run --source-dir . --start-url https://claude.ai --firefox-profile ./.ff-dev-profile --keep-profile-changes --profile-create-if-missing",
+    "lint": "web-ext lint --source-dir . --ignore-files tests node_modules .ff-dev-profile docs web-ext-artifacts README.md CHANGELOG.md package.json package-lock.json .gitignore",
+    "build": "web-ext build --source-dir . --overwrite-dest --ignore-files tests node_modules .ff-dev-profile docs web-ext-artifacts README.md CHANGELOG.md package.json package-lock.json .gitignore",
+    "test": "node --test --test-timeout=120000 \"tests/**/*.test.mjs\"",
+    "sign": "web-ext sign --source-dir . --channel=unlisted --artifacts-dir web-ext-artifacts --ignore-files tests node_modules .ff-dev-profile docs web-ext-artifacts README.md CHANGELOG.md package.json package-lock.json .gitignore",
+    "verify": "node tests/e2e/verify-export.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "jsdom": "^29.1.1",
+    "web-ext": "^10.7.0"
+  },
+  "description": "Firefox extension: export Claude chats, artifacts, projects, skills and memory to Markdown/PDF locally."
+}
