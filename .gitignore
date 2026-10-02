@@ -19,3 +19,6 @@ Thumbs.db
 
 # Personal git/push tooling - not part of the project, never shared.
 /exclude/
+
+# Firefox add-on store submission bundle (generated)
+/amo-export/

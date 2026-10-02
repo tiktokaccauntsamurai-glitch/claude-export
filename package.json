@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "start": "web-ext run --source-dir . --start-url https://claude.ai --firefox-profile ./.ff-dev-profile --keep-profile-changes --profile-create-if-missing",
-    "lint": "web-ext lint --source-dir . --ignore-files tests node_modules .ff-dev-profile docs web-ext-artifacts README.md CHANGELOG.md package.json package-lock.json .gitignore",
-    "build": "web-ext build --source-dir . --overwrite-dest --ignore-files tests node_modules .ff-dev-profile docs web-ext-artifacts README.md CHANGELOG.md package.json package-lock.json .gitignore",
+    "lint": "web-ext lint --source-dir . --ignore-files tests node_modules .ff-dev-profile docs web-ext-artifacts README.md CHANGELOG.md package.json package-lock.json .gitignore exclude README.ru.md amo-export",
+    "build": "web-ext build --source-dir . --overwrite-dest --ignore-files tests node_modules .ff-dev-profile docs web-ext-artifacts README.md CHANGELOG.md package.json package-lock.json .gitignore exclude README.ru.md amo-export",
     "test": "node --test --test-timeout=120000 \"tests/**/*.test.mjs\"",
-    "sign": "web-ext sign --source-dir . --channel=unlisted --artifacts-dir web-ext-artifacts --ignore-files tests node_modules .ff-dev-profile docs web-ext-artifacts README.md CHANGELOG.md package.json package-lock.json .gitignore",
+    "sign": "web-ext sign --source-dir . --channel=unlisted --artifacts-dir web-ext-artifacts --ignore-files tests node_modules .ff-dev-profile docs web-ext-artifacts README.md CHANGELOG.md package.json package-lock.json .gitignore exclude README.ru.md amo-export",
     "verify": "node tests/e2e/verify-export.mjs"
   },
   "devDependencies": {
